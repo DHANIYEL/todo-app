@@ -1,24 +1,60 @@
+"use client";
 import Todo from "@/components/Todo";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+  });
+
+  const onChangeHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormData((form) => ({ ...form, [name]: value }));
+    // console.log(formData)
+  };
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      // API catch
+
+      toast.success("Success")
+    } catch (error) {
+
+      toast.error("Error")
+    }
+  };
   return (
     <>
+      <ToastContainer theme="colored" hideProgressBar />
       <form
         action=""
         className="flex items-start gap-4 w-[80%] max-w-[600px] flex-col mt-24 px-2 mx-auto"
+        onSubmit={onSubmitHandler}
       >
         <input
           type="text"
           name="title"
           placeholder="Enter the title"
           className="px-3 py-2 border-2 w-full rounded-md"
+          onChange={onChangeHandler}
+          value={formData.title}
         />
         <textarea
-          name="describtion"
+          name="description"
           placeholder="Enter the description"
           className="w-full px-3 py-2 border-2 rounded-md"
+          onChange={onChangeHandler}
+          value={formData.description}
         ></textarea>
-        <button className="bg-black text-white px-4 py-2 rounded-md hover:bg-[#232222]">
+        <button
+          className="bg-black text-white px-4 py-2 rounded-md hover:bg-[#232222]"
+          type="submit"
+        >
           Add Todo
         </button>
       </form>
@@ -84,6 +120,8 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
+            <Todo />
+            <Todo />
             <Todo />
           </tbody>
         </table>
