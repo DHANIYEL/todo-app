@@ -9,7 +9,8 @@ const LoadDB = async () => {
 LoadDB();
 
 export async function GET(request) {
-  return NextResponse.json({ msg: "Get msg" });
+    const todos = await TodoModel.find({})
+  return NextResponse.json({ todos:todos});
 }
 export async function POST(request) {
   const { title, description } = await request.json();
