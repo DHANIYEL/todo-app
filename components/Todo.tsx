@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Todo = (id,title,description,complete,mongoId) => {
+const Todo = ({id,title,description,complete,mongoId}) => {
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <th

@@ -16,7 +16,7 @@ export default function Home() {
   const fetchTodo = async () => {
     const response = await axios("/api");
     console.log(response.data.todos);
-    // setTodoData(response.data.todos)
+    setTodoData(response.data.todos)
   };
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function Home() {
         </button>
       </form>
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-[60%] mx-auto mt-24">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-[60%] mx-auto my-24">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
