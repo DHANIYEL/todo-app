@@ -9,18 +9,18 @@ const Todo = ({id,title,description,complete,mongoId,deleteTodo,CompleteTodo}) =
       >
         {id+1}
       </th>
-      <td className="px-6 py-4">{title}</td>
-      <td className="px-6 py-4">{description}</td>
-      <td className="px-6 py-4">{complete? "Completed":"Pending"}</td>
-      <td className=" ">
+      <td className="px-6 py-4 max-sm:px-1 max-sm:py-1">{title}</td>
+      <td className="px-6 py-4 max-sm:px-1 max-sm:py-1">{description}</td>
+      <td className="px-6 py-4 max-sm:px-1 max-sm:py-1">{complete? "Completed":"Pending"}</td>
+      <td className=" btn-th">
         <button
-          className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-[#e05151e4]"
+          className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-[#e05151e4] max-sm:px-2 max-sm:py-2"
           onClick={()=>deleteTodo(mongoId)}
         >
           Delete
         </button>
         <button
-          className="bg-green-500 text-white px-4 py-2 rounded-md ml-2  hover:bg-[#6ae180e4]"
+          className="bg-green-500 text-white px-4 py-2 rounded-md ml-2  hover:bg-[#6ae180e4] max-sm:px-2 max-sm:py-2"
           onClick={()=> CompleteTodo(mongoId)}
         >
           Done

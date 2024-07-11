@@ -1,6 +1,7 @@
 "use client";
 import Todo from "@/components/Todo";
 import axios from "axios";
+import { mongo } from "mongoose";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,18 +22,22 @@ export default function Home() {
   const deleteTodo = async (id) => {
     const response = await axios.delete("/api", {
       params: {
-        mongoId: id, 
+        mongoId: id,
       },
     });
     toast.success(response.data.msg);
     fetchTodo();
   };
   const CompleteTodo = async (id) => {
-    const response = await axios.delete("/api", {
-      params: {
-        mongoId: id, 
-      },
-    });
+    const response = await axios.put(
+      "/api",
+      {},
+      {
+        params: {
+          mongoId: id,
+        },
+      }
+    );
     toast.success(response.data.msg);
     fetchTodo();
   };
@@ -94,14 +99,14 @@ export default function Home() {
         </button>
       </form>
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-[60%] mx-auto my-24">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-[60%] mx-auto my-24 max-sm:w-[95%] ">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 max-sm:px-1 text-center">
                 ID
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 max-sm:px-1">
                 <div className="flex items-center">
                   Title
                   <a href="#">
@@ -117,7 +122,7 @@ export default function Home() {
                   </a>
                 </div>
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 max-sm:px-1">
                 <div className="flex items-center">
                   Description
                   <a href="#">
@@ -133,7 +138,7 @@ export default function Home() {
                   </a>
                 </div>
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 max-sm:px-1">
                 <div className="flex items-center">
                   Status
                   <a href="#">

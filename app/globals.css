@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@media only screen and (max-width: 600px) {
+    .btn-th button{
+        display: flex;
+        gap: 5px;
+    }
+}
