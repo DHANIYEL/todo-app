@@ -2,10 +2,15 @@
 import Todo from "@/components/Todo";
 import axios from "axios";
 import { mongo } from "mongoose";
-import { ChangeEvent,FormEvent, ChangeEventHandler, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  ChangeEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -20,7 +25,7 @@ export default function Home() {
     setTodoData(response.data.todos);
   };
 
-  const deleteTodo = async (id:any) => {
+  const deleteTodo = async (id: any) => {
     const response = await axios.delete("/api", {
       params: {
         mongoId: id,
@@ -29,7 +34,7 @@ export default function Home() {
     toast.success(response.data.msg);
     fetchTodo();
   };
-  const CompleteTodo = async (id:any) => {
+  const CompleteTodo = async (id: any) => {
     const response = await axios.put(
       "/api",
       {},
@@ -47,14 +52,14 @@ export default function Home() {
     fetchTodo();
   }, []);
 
-  const onChangeHandler = (e:any) => {
+  const onChangeHandler = (e: any) => {
     const name = e.target.name;
     const value = e.target.value;
     setFormData((form) => ({ ...form, [name]: value }));
     // console.log(formData)
   };
 
-  const onSubmitHandler = async (e:any) => {
+  const onSubmitHandler = async (e: any) => {
     e.preventDefault();
     try {
       // API catch
@@ -84,6 +89,7 @@ export default function Home() {
           className="px-3 py-2 border-2 w-full rounded-md"
           onChange={onChangeHandler}
           value={formData.title}
+          required
         />
         <textarea
           name="description"
@@ -91,6 +97,7 @@ export default function Home() {
           className="w-full px-3 py-2 border-2 rounded-md"
           onChange={onChangeHandler}
           value={formData.description}
+          required
         ></textarea>
         <button
           className="bg-black text-white px-4 py-2 rounded-md hover:bg-[#232222]"
@@ -161,10 +168,9 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {todoData.map((item:any, index) => {
+            {todoData.map((item: any, index) => {
               return (
                 <Todo
-                
                   key={index}
                   title={item?.title}
                   description={item?.description}
