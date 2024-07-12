@@ -19,7 +19,7 @@ export default function Home() {
     setTodoData(response.data.todos);
   };
 
-  const deleteTodo = async (id) => {
+  const deleteTodo = async (id:any) => {
     const response = await axios.delete("/api", {
       params: {
         mongoId: id,
@@ -28,7 +28,7 @@ export default function Home() {
     toast.success(response.data.msg);
     fetchTodo();
   };
-  const CompleteTodo = async (id) => {
+  const CompleteTodo = async (id:any) => {
     const response = await axios.put(
       "/api",
       {},
@@ -46,14 +46,14 @@ export default function Home() {
     fetchTodo();
   }, []);
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e:any) => {
     const name = e.target.name;
     const value = e.target.value;
     setFormData((form) => ({ ...form, [name]: value }));
     // console.log(formData)
   };
 
-  const onSubmitHandler = async (e) => {
+  const onSubmitHandler = async (e:any) => {
     e.preventDefault();
     try {
       // API catch
