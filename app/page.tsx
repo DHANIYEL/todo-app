@@ -2,9 +2,10 @@
 import Todo from "@/components/Todo";
 import axios from "axios";
 import { mongo } from "mongoose";
-import { useEffect, useState } from "react";
+import { ChangeEvent,FormEvent, ChangeEventHandler, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -46,7 +47,7 @@ export default function Home() {
     fetchTodo();
   }, []);
 
-  const onChangeHandler = (e:any) => {
+  const onChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     setFormData((form) => ({ ...form, [name]: value }));
@@ -88,7 +89,7 @@ export default function Home() {
           name="description"
           placeholder="Enter the description"
           className="w-full px-3 py-2 border-2 rounded-md"
-          onChange={onChangeHandler}
+          onChange={()=>onChangeHandler}
           value={formData.description}
         ></textarea>
         <button
@@ -99,7 +100,7 @@ export default function Home() {
         </button>
       </form>
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-[60%] mx-auto my-24 max-sm:w-[95%] ">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-[60%] max-sm:w-[90%] mx-auto my-24 ">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -154,15 +155,16 @@ export default function Home() {
                   </a>
                 </div>
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 min-w-40 ">
                 <span className="sr-only">Edit</span>
               </th>
             </tr>
           </thead>
           <tbody>
-            {todoData.map((item, index) => {
+            {todoData.map((item:any, index) => {
               return (
                 <Todo
+                
                   key={index}
                   title={item.title}
                   description={item.description}
