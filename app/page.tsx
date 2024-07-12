@@ -166,11 +166,11 @@ export default function Home() {
                 <Todo
                 
                   key={index}
-                  title={item.title}
-                  description={item.description}
+                  title={item?.title}
+                  description={item?.description}
                   id={index}
-                  complete={item.isCompleted}
-                  mongoId={item._id}
+                  complete={item?.isCompleted}
+                  mongoId={item?._id}
                   deleteTodo={deleteTodo}
                   CompleteTodo={CompleteTodo}
                 />
