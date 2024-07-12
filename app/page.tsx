@@ -47,7 +47,7 @@ export default function Home() {
     fetchTodo();
   }, []);
 
-  const onChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (e:any) => {
     const name = e.target.name;
     const value = e.target.value;
     setFormData((form) => ({ ...form, [name]: value }));
@@ -89,7 +89,7 @@ export default function Home() {
           name="description"
           placeholder="Enter the description"
           className="w-full px-3 py-2 border-2 rounded-md"
-          onChange={()=>onChangeHandler}
+          onChange={onChangeHandler}
           value={formData.description}
         ></textarea>
         <button
