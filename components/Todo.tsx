@@ -19,8 +19,10 @@ const Todo = ({
       </th>
       <td className="px-6 py-4 max-sm:px-1 max-sm:py-1">{title}</td>
       <td className="px-6 py-4 max-sm:px-1 max-sm:py-1">{description}</td>
-      <td className="px-6 py-4 max-sm:px-1 max-sm:py-1">
-        {complete ? "Completed" : "Pending"}
+      <td className={`px-6 py-4 max-sm:px-1 max-sm:py-1 flex justify-center`}>
+        <div className={` w-fit p-1 rounded text-white ${!complete ? "bg-red-500 " : "bg-green-500"}`}>
+          {complete ? "Completed" : "Pending"}
+        </div>
       </td>
       <td className=" btn-th">
         <div className="flex justify-center">
@@ -30,12 +32,16 @@ const Todo = ({
           >
             Delete
           </button>
-          <button
-            className="bg-green-500 text-white px-4 py-2 rounded-md ml-2  hover:bg-[#6ae180e4] max-sm:px-2 max-sm:py-2"
-            onClick={() => CompleteTodo(mongoId)}
-          >
-            Done
-          </button>
+          {complete ? (
+            ""
+          ) : (
+            <button
+              className="bg-green-500 text-white px-4 py-2 rounded-md ml-2  hover:bg-[#6ae180e4] max-sm:px-2 max-sm:py-2"
+              onClick={() => CompleteTodo(mongoId)}
+            >
+              Done
+            </button>
+          )}
         </div>
       </td>
     </tr>
